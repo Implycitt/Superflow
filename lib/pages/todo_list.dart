@@ -1,19 +1,61 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:superflow/models/save_task.dart';
 
 class TodoList extends StatelessWidget {
-  const TododList({super.key});
+  const TodoList({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        titel: const Text('Todo List'),
+        title: const Text('Todo List'),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).pushNamed('/add-todo-screen')
+          Navigator.of(context).pushNamed('/add-todo-screen');
         },
         child: const Icon(Icons.add),
+      ),
+      body: Consumer<SaveTask>(
+        builder: (context, task, child) {
+          return ListView.builder(
+            itemCount: task.tasks.length,
+            itemBuilder: (BuildContext context, index) {
+              return ListTile(
+                title: Text(
+                  task.tasks[index].title,
+                  style: TextStyle(
+                    decoration: task.tasks[index].isCompleted
+                        ? TextDecoration.lineThrough
+                        : TextDecoration.none,
+                  ),
+                ),
+                trailing: Wrap(
+                  children: [
+                    Checkbox(
+                      value: task.tasks[index].isCompleted,
+                      onChanged: (_) {
+                        context.read<SaveTask>().checkTask(index);
+                      },
+                    ),
+                    IconButton(
+                      padding: EdgeInsets.all(0),
+                      onPressed: () {
+                        context.read<SaveTask>().removeTask(
+                              task.tasks[index],
+                            );
+                      },
+                      icon: const Icon(
+                        Icons.delete,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
+        },
       ),
     );
   }

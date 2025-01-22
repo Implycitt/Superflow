@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:superflow/models/save_task.dart';
+import 'package:superflow/pages/add_todo.dart';
+import 'package:superflow/pages/todo_list.dart';
 
 void main() {
   runApp(
-    const MyApp()
+    ChangeNotifierProvider(
+      create: (context) => SaveTask(),
+      child: const MyApp(),
+    ),
   );
 }
 
@@ -15,8 +22,6 @@ class MyApp extends StatelessWidget {
       title: 'Superflow',
       theme: ThemeData(
         brightness: Brightness.dark,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
       ),
       initialRoute: '/',
       routes: {
