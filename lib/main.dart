@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:superflow/models/save_task.dart';
 import 'package:superflow/pages/add_todo.dart';
 import 'package:superflow/pages/todo_list.dart';
+import 'package:superflow/pages/home.dart';
 
 void main() {
   runApp(
@@ -25,10 +26,13 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (_) => const TodoList(),
+        '/': (_) => HomePage(),
+        'todo-screen': (_) => const TodoList(),
         '/add-todo-screen': (_) => AddTodo(),
       },
+      debugShowCheckedModeBanner: false,
     );
   }
 }
 
+  
