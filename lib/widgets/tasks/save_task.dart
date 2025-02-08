@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:superflow/models/task_model.dart';
+import 'package:superflow/widgets/tasks/task_model.dart';
 
 class SaveTask extends ChangeNotifier {
   List<Task> _tasks = [];

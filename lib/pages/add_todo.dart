@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:superflow/models/save_task.dart';
-import 'package:superflow/models/task_model.dart';
+import 'package:superflow/widgets/tasks/save_task.dart';
+import 'package:superflow/widgets/tasks/task_model.dart';
 
 class AddTodo extends StatelessWidget {
   AddTodo({super.key});
