@@ -1,25 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:superflow/pages/home.dart';
 import 'package:superflow/pages/todo_list.dart';
+import 'package:superflow/pages/whiteboard.dart';
+import 'package:superflow/pages/time.dart';
 
 class Rail extends StatefulWidget {
-  const Rail({super.key});
+  int selectedIndex;
+  
+  Rail(this.selectedIndex);
+
+  @override
   State<Rail> createState() => RailState();
 }
 
 class RailState extends State<Rail> {
-  int _selectedIndex = 0;
   NavigationRailLabelType labelType = NavigationRailLabelType.all;
-  final List<Widget> pages = [HomePage(), TodoList()];
+  final List<Widget> pages = [HomePage(), TodoList(), WhiteboardPage(), TimePage()];
 
   @override
   Widget build(BuildContext context) {
     return NavigationRail(
-      selectedIndex: _selectedIndex,
-      onDestinationSelected: (int index) {
+      selectedIndex: widget.selectedIndex,
+      onDestinationSelected: (idx) {
         setState(() {
-          _selectedIndex = index;
-          Navigator.push(context, MaterialPageRoute(builder: (context) => pages[_selectedIndex]));
+          widget.selectedIndex = idx;
+          Navigator.push(context, MaterialPageRoute(builder: (context) => pages[widget.selectedIndex]));
         });
       },
       labelType: labelType,
@@ -34,6 +39,16 @@ class RailState extends State<Rail> {
           icon: Icon(Icons.add_task),
           selectedIcon: Icon(Icons.add_task_outlined),
           label: Text('Todo'),
+        ),
+        NavigationRailDestination(
+          icon: Icon(Icons.draw),
+          selectedIcon: Icon(Icons.draw_outlined),
+          label: Text('Whiteboard'),
+        ),
+        NavigationRailDestination(
+          icon: Icon(Icons.access_alarm),
+          selectedIcon: Icon(Icons.access_alarm_outlined),
+          label: Text('Time'),
         ),
       ],
     );

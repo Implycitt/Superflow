@@ -19,7 +19,7 @@ class TodoList extends StatelessWidget {
         child: Container(
           child: Row(
             children: [
-              Rail(),
+              Rail(1),
             ],
           ),
         ),

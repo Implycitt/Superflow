@@ -4,6 +4,8 @@ import 'package:superflow/widgets/tasks/save_task.dart';
 import 'package:superflow/pages/add_todo.dart';
 import 'package:superflow/pages/todo_list.dart';
 import 'package:superflow/pages/home.dart';
+import 'package:superflow/pages/whiteboard.dart';
+import 'package:superflow/pages/time.dart';
 
 void main() {
   runApp(
@@ -24,8 +26,10 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (_) => HomePage(),
-        'todo-screen': (_) => const TodoList(),
+        '/todo-screen': (_) => const TodoList(),
         '/add-todo-screen': (_) => AddTodo(),
+        '/time': (_) => TimePage(),
+        '/whiteboard': (_) => WhiteboardPage(),
       },
       debugShowCheckedModeBanner: false,
     );

@@ -14,8 +14,12 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Row(
         children: [
-          Rail(),
-          Card(child: CardButton(cardName: 'Home', page: TodoList()))
+          Container(
+            child: Rail(0),
+          ),
+          Container(
+            child: Card(child: CardButton(cardName: 'TODO', page: TodoList()))
+          ),
         ],
       ),
     );
